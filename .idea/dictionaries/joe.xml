@@ -1,7 +1,9 @@
 <component name="ProjectDictionaryState">
   <dictionary name="joe">
     <words>
+      <w>fname</w>
       <w>lname</w>
+      <w>sname</w>
     </words>
   </dictionary>
 </component>
