@@ -2,36 +2,38 @@ package com.kanyideveloper.lovecalculator
 
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+ class MainRepository{
 
-class MainRepository(private val fname: String, private val lname: String){
+     private  val TAG = "MainRepository"
 
-    private  val TAG = "Repository"
+     val data = MutableLiveData<LoveResults>()
 
-    private val retrofit = Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(BASE_URL)
-            .build()
+     fun getData(fn : String, sn: String){
+         val retrofit = Retrofit.Builder()
+                 .addConverterFactory(GsonConverterFactory.create())
+                 .baseUrl(BASE_URL)
+                 .build()
 
-    fun getData(){
-        val service = retrofit.create(RestAPI::class.java)
+         val service = retrofit.create(RestAPI::class.java)
 
-        val call : Call<List<LoveResults>> = service.getLoversResult(fname,lname)
+         val call : Call<LoveResults> = service.getLoversResult(fn,sn)
 
-        call.enqueue(object : Callback<List<LoveResults>>{
-            override fun onFailure(call: Call<List<LoveResults>>, t: Throwable) {
-                Log.d(TAG, "Failed")
-            }
+         call.enqueue(object : Callback<LoveResults> {
+             override fun onFailure(call: Call<LoveResults>, t: Throwable) {
+                 Log.d(TAG, "onFailure: ")
+             }
 
-            override fun onResponse(call: Call<List<LoveResults>>, response: Response<List<LoveResults>>) {
-                Log.d(TAG, response.message())
-            }
-
-        })
-    }
-}
+             override fun onResponse(call: Call<LoveResults>, response: Response<LoveResults>) {
+                 data.value = response.body()
+                 Log.d(TAG, data.value?.fname.toString())
+             }
+         })
+     }
+ }

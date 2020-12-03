@@ -1,13 +1,21 @@
 package com.kanyideveloper.lovecalculator
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class MainViewModel: ViewModel(){
 
-    private val repository = MainRepository("john","joy")
+class MainViewModel(private var fname: String, private var sname: String)  : ViewModel() {
 
-    fun getData(){
-        repository.getData()
+    private val repository = MainRepository()
+
+    var data : LiveData<LoveResults>
+
+    init {
+        this.data = repository.data
+    }
+
+    fun getDatas() {
+        repository.getData(fname, sname)
     }
 }
