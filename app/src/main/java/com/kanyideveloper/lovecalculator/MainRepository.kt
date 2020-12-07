@@ -9,6 +9,8 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+/*
+
 class MainRepository {
 
     private val TAG = "MainRepository"
@@ -43,3 +45,5 @@ class MainRepository {
         })
     }
 }
+
+ */
