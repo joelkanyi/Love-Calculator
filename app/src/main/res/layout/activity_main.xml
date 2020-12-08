@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/main"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -16,8 +17,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".MainActivity">
-
+             tools:context=".MainActivity">
 
             <EditText
                 android:id="@+id/fname"
@@ -26,10 +26,14 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
-                android:text="@={viewmodel.fname}"
+                android:background="@drawable/inputs_backgroud"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:fontFamily="sans-serif-black"
                 android:hint="@string/your_name"
+                android:inputType="textPersonName"
+                android:text="@={viewmodel.fname}"
+                android:textColor="@color/second_color"
+                android:textColorHint="#feeaca"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +47,10 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:ems="10"
+                android:textColor="@color/second_color"
+                android:fontFamily="sans-serif-black"
+                android:background="@drawable/inputs_backgroud"
+                android:textColorHint="#feeaca"
                 android:text="@={viewmodel.sname}"
                 android:inputType="textPersonName"
                 android:hint="@string/your_loves_name"
@@ -56,6 +64,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:textColor="@color/main"
+                android:textAllCaps="false"
+                android:fontFamily="sans-serif-black"
                 android:text="@string/calculate"
                 android:onClick="@{viewmodel::getRes}"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -67,6 +78,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
+                android:textColor="@color/second_color"
+                android:textSize="16sp"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
                 android:text="@string/calculate_the_percentage_of_love_between_you_two"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,22 +93,26 @@
                 android:id="@+id/percentage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                tools:text="78%"
-                android:textSize="70dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calculate" />
+                android:text="..."
+                android:textColor="@color/second_color"
+                android:textSize="50dp"
+                app:layout_constraintBottom_toBottomOf="@+id/circleProgress"
+                app:layout_constraintEnd_toEndOf="@+id/circleProgress"
+                app:layout_constraintStart_toStartOf="@+id/circleProgress"
+                app:layout_constraintTop_toTopOf="@+id/circleProgress" />
 
             <TextView
                 android:id="@+id/love_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif-black"
+                tools:text="All the best!!"
+                android:textColor="@color/second_color"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/percentage" />
+                app:layout_constraintTop_toBottomOf="@+id/circleProgress" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -105,6 +126,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
+
+            <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                android:id="@+id/circleProgress"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="16dp"
+                app:cpb_progressbar_color ="@color/second_color"
+                app:cpb_background_progressbar_width ="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calculate" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>

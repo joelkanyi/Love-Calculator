@@ -1,6 +1,8 @@
 package com.kanyideveloper.lovecalculator
 
+import android.graphics.Color
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.widget.Button
@@ -21,6 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity() {
 
 
+    private lateinit var timer: CountDownTimer
     private val TAG = "MainActivity"
     private lateinit var binding: ActivityMainBinding
 
@@ -30,6 +33,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        binding.textView.isSelected = true
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
@@ -44,7 +49,15 @@ class MainActivity : AppCompatActivity() {
         })
 
         viewModel.results.observe(this, Observer {
-            binding.loveMessage.text = it.toString()
+           binding.loveMessage.text = it.result
+
+            binding.circleProgress.apply {
+                progressMax = 100f
+                setProgressWithAnimation(it.percentage.toFloat(), 1000)
+                progressBarWidth = 15f
+            }
+
+            binding.percentage.text = "${it.percentage}%"
         })
     }
 }
