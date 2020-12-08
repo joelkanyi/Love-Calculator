@@ -21,9 +21,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 class MainActivity : AppCompatActivity() {
 
 
-    private  val TAG = "MainActivity"
+    private val TAG = "MainActivity"
     private lateinit var binding: ActivityMainBinding
-   // private lateinit var mainViewModelFactory: MainViewModelFactory
+
+    // private lateinit var mainViewModelFactory: MainViewModelFactory
     private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,31 +35,16 @@ class MainActivity : AppCompatActivity() {
 
         binding.viewmodel = viewModel
 
-/*
-        binding.calculate.setOnClickListener {
+        viewModel.progressb.observe(this, Observer {
+            if (it) {
+                binding.progressBar.visibility = VISIBLE
+            } else {
+                binding.progressBar.visibility = INVISIBLE
+            }
+        })
 
-           mainViewModelFactory = MainViewModelFactory(binding.fname.text.toString(), binding.lname.text.toString())
-            viewModel = ViewModelProvider(this, mainViewModelFactory).get(MainViewModel::class.java)
-
-            viewModel.getData()
-
-            viewModel.progressb.observe(this, Observer {
-                if (it){
-                    binding.progressBar.visibility = VISIBLE
-                }
-                else{
-                    binding.progressBar.visibility = INVISIBLE
-                }
-            })
-
-            viewModel.data.observe(this, Observer {
-                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-                binding.loveMessage.text = it
-            })
-        }
-
- */
+        viewModel.results.observe(this, Observer {
+            binding.loveMessage.text = it.toString()
+        })
     }
-
-
 }

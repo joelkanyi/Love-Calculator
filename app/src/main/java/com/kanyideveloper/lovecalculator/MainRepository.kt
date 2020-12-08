@@ -1,6 +1,7 @@
 package com.kanyideveloper.lovecalculator
 
 import android.util.Log
+import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
@@ -9,41 +10,39 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-/*
-
-class MainRepository {
+class MainRepository{
 
     private val TAG = "MainRepository"
 
-    val data = MutableLiveData<String>()
+    var results = MutableLiveData<LoveResults>()
+
     val progressb = MutableLiveData<Boolean>()
 
-    private val retrofit = Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl(BASE_URL)
-        .build()
 
-    fun getData(fn:String, sn: String) {
+    fun getRes(fname: String, sname: String){
 
         progressb.value = true
 
+        val retrofit  =  Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
         val service = retrofit.create(RestAPI::class.java)
 
-        val call: Call<LoveResults> = service.getLoversResult(fn, sn)
+        val call: Call<LoveResults> = service.getLoversResult(fname, sname)
 
-        call.enqueue(object : Callback<LoveResults> {
+        call.enqueue(object : Callback<LoveResults>{
             override fun onFailure(call: Call<LoveResults>, t: Throwable) {
                 progressb.value = false
-                Log.d(TAG, "onFailure: ")
+                Log.d(TAG, "onFailure: failed")
             }
 
             override fun onResponse(call: Call<LoveResults>, response: Response<LoveResults>) {
                 progressb.value = false
-                data.value = response.body().toString()
-                Log.d(TAG, data.value.toString())
+                results.value = response.body()
+                Log.d(TAG, "onResponse: ${response.body()}")
             }
         })
     }
 }
-
- */
