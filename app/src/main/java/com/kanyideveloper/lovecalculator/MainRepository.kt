@@ -19,9 +19,9 @@ class MainRepository{
     val progressb = MutableLiveData<Boolean>()
 
 
-    fun getRes(fname: String, sname: String){
+    suspend fun getRes(fname: String, sname: String){
 
-        progressb.value = true
+      //  progressb.value = true
 
         val retrofit  =  Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -30,9 +30,9 @@ class MainRepository{
 
         val service = retrofit.create(RestAPI::class.java)
 
-        val call: Call<LoveResults> = service.getLoversResult(fname, sname)
+        results.value = service.getLoversResult(fname, sname)
 
-        call.enqueue(object : Callback<LoveResults>{
+       /* call.enqueue(object : Callback<LoveResults>{
             override fun onFailure(call: Call<LoveResults>, t: Throwable) {
                 progressb.value = false
                 Log.d(TAG, "onFailure: failed")
@@ -43,6 +43,6 @@ class MainRepository{
                 results.value = response.body()
                 Log.d(TAG, "onResponse: ${response.body()}")
             }
-        })
+        })*/
     }
 }

@@ -10,5 +10,5 @@ interface RestAPI {
 
     @Headers("x-rapidapi-key: 72ca1bbcd4msh2635007a217ffb8p140999jsndca5f4311295")
     @GET("getPercentage")
-    fun getLoversResult(@Query("fname") fName: String?, @Query("sname") sName: String?) : Call<LoveResults>
+    suspend fun getLoversResult(@Query("fname") fName: String?, @Query("sname") sName: String?) : LoveResults
 }

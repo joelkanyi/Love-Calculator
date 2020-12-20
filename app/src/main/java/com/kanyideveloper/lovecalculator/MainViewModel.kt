@@ -4,11 +4,9 @@ import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
+
 
 class MainViewModel : ViewModel(){
     var fname: String? = null
@@ -26,11 +24,13 @@ class MainViewModel : ViewModel(){
     private val TAG = "MainViewModel"
 
 
-    fun getRes(view: View){
+    fun getRes(view: View) {
            if (fname.isNullOrEmpty() && sname.isNullOrEmpty()){
                Log.d(TAG, "getRes: enoty strings")
            }
-        repository.getRes(fname.toString(),sname.toString())
-    }
 
+        viewModelScope.launch{
+            repository.getRes(fname.toString(),sname.toString())
+        }
+    }
 }
