@@ -26,11 +26,12 @@ class MainViewModel : ViewModel(){
 
     fun getRes(view: View) {
            if (fname.isNullOrEmpty() && sname.isNullOrEmpty()){
-               Log.d(TAG, "getRes: enoty strings")
+               Log.d(TAG, "getRes: empty strings")
            }
-
-        viewModelScope.launch{
-            repository.getRes(fname.toString(),sname.toString())
-        }
+        else{
+               viewModelScope.launch{
+                   repository.getRes(fname.toString(),sname.toString())
+               }
+           }
     }
 }

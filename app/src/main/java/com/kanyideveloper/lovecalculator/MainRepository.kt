@@ -21,28 +21,7 @@ class MainRepository{
 
     suspend fun getRes(fname: String, sname: String){
 
-      //  progressb.value = true
+       results.value = RetrofitBuilder.apiService.getLoversResult(fname,sname)
 
-        val retrofit  =  Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val service = retrofit.create(RestAPI::class.java)
-
-        results.value = service.getLoversResult(fname, sname)
-
-       /* call.enqueue(object : Callback<LoveResults>{
-            override fun onFailure(call: Call<LoveResults>, t: Throwable) {
-                progressb.value = false
-                Log.d(TAG, "onFailure: failed")
-            }
-
-            override fun onResponse(call: Call<LoveResults>, response: Response<LoveResults>) {
-                progressb.value = false
-                results.value = response.body()
-                Log.d(TAG, "onResponse: ${response.body()}")
-            }
-        })*/
     }
 }
