@@ -6,8 +6,8 @@
 
     <data>
         <variable
-            name="viewmodel"
-            type="com.kanyideveloper.lovecalculator.MainViewModel" />
+            name="activity"
+            type="com.kanyideveloper.lovecalculator.MainActivity" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -31,7 +31,7 @@
                 android:fontFamily="sans-serif-black"
                 android:hint="@string/your_name"
                 android:inputType="textPersonName"
-                android:text="@={viewmodel.fname}"
+                android:text="@={activity.fname}"
                 android:textColor="@color/second_color"
                 android:textColorHint="#feeaca"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +51,7 @@
                 android:fontFamily="sans-serif-black"
                 android:background="@drawable/inputs_backgroud"
                 android:textColorHint="#feeaca"
-                android:text="@={viewmodel.sname}"
+                android:text="@={activity.sname}"
                 android:inputType="textPersonName"
                 android:hint="@string/your_loves_name"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +68,7 @@
                 android:textAllCaps="false"
                 android:fontFamily="sans-serif-black"
                 android:text="@string/calculate"
-                android:onClick="@{viewmodel::getRes}"
+                android:onClick="@{activity::setupObserver}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lname" />

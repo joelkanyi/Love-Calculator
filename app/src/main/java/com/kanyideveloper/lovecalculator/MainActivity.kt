@@ -3,6 +3,7 @@ package com.kanyideveloper.lovecalculator
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.widget.Button
@@ -27,6 +28,8 @@ class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
     private lateinit var binding: ActivityMainBinding
 
+
+
     // private lateinit var mainViewModelFactory: MainViewModelFactory
     private lateinit var viewModel: MainViewModel
 
@@ -36,7 +39,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.textView.isSelected = true
 
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+
+        //viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         binding.viewmodel = viewModel
 
@@ -58,6 +63,19 @@ class MainActivity : AppCompatActivity() {
             }
 
             binding.percentage.text = "${it.percentage}%"
+        })
+    }
+
+    private fun setupViewModel() {
+        viewModel = ViewModelProvider(this, MainViewModelFactory(RetrofitBuilder.apiService)).get(MainViewModel::class.java)
+    }
+
+    private fun setupUI(){
+
+    }
+
+    fun setupObserver(view : View){
+        viewModel.getRes(fname,sname).observe(this, Observer {
         })
     }
 }

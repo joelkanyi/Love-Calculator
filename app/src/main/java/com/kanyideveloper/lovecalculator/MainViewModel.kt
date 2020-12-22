@@ -4,11 +4,15 @@ import android.util.Log
 import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
-class MainViewModel : ViewModel(){
+class MainViewModel(private val apiService: ApiService) : ViewModel(){
     var fname: String? = null
     var sname: String? = null
 
@@ -24,14 +28,12 @@ class MainViewModel : ViewModel(){
     private val TAG = "MainViewModel"
 
 
-    fun getRes(view: View) {
-           if (fname.isNullOrEmpty() && sname.isNullOrEmpty()){
-               Log.d(TAG, "getRes: empty strings")
-           }
-        else{
-               viewModelScope.launch{
-                   repository.getRes(fname.toString(),sname.toString())
-               }
-           }
-    }
+    fun getRes(fname: String, sname: String) = liveData(Dispatchers.IO) {
+            emit(Resource.loading(data = null))
+            try {
+                emit(Resource.success(data = apiService.getLoversResult(fname,sname)))
+            }catch (exception: Exception){
+                emit(Resource.error(data=null,message = exception.message?:"Error occurred"))
+            }
+        }
 }
