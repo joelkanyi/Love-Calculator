@@ -2,11 +2,14 @@ package com.kanyideveloper.lovecalculator.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.DialogInterface
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -30,6 +33,10 @@ class MainActivity : AppCompatActivity() {
 
         //To make marquee moving
         binding.textView.isSelected = true
+
+        if (!isConnected){
+            showCustomDialog()
+        }
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         binding.viewmodel = viewModel
@@ -65,4 +72,18 @@ class MainActivity : AppCompatActivity() {
             context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
     }
+
+    private fun showCustomDialog() {
+        val alertDialogBuilder = AlertDialog.Builder(this)
+        alertDialogBuilder.setMessage("It seems you are not connect to the Internet, please turn on WIFI or Mobile Data and try again")
+        alertDialogBuilder.setCancelable(false)
+        alertDialogBuilder.setPositiveButton("Ok") { _, _  -> finish() }
+        alertDialogBuilder.show()
+    }
+
+    private val Context.isConnected: Boolean
+        get() {
+            return (getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
+                .activeNetworkInfo?.isConnected == true
+        }
 }
