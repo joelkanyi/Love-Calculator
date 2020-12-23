@@ -9,9 +9,11 @@ import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.kanyideveloper.lovecalculator.R
 import com.kanyideveloper.lovecalculator.databinding.ActivityMainBinding
@@ -65,7 +67,21 @@ class MainActivity : AppCompatActivity() {
                 binding.percentage.text = "${it.percentage}%"
             }
         })
+
+        viewModel.connectionMessage.observe(this, Observer {
+           Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+            binding.animationView.visibility = VISIBLE
+            binding.circleProgress.visibility = INVISIBLE
+            binding.percentage.visibility = INVISIBLE
+            binding.loveMessage.visibility = INVISIBLE
+            binding.progressBar.visibility = INVISIBLE
+            binding.fname.visibility = INVISIBLE
+            binding.lname.visibility = INVISIBLE
+            binding.textView.visibility = INVISIBLE
+            binding.calculate.visibility = INVISIBLE
+        })
     }
+
 
     private fun View.hideKeyboard() {
         val inputMethodManager =
