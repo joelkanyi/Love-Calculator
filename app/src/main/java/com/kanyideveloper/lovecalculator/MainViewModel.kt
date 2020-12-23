@@ -28,7 +28,7 @@ class MainViewModel(private val apiService: ApiService) : ViewModel(){
     private val TAG = "MainViewModel"
 
 
-    fun getRes(fname: String, sname: String) = liveData(Dispatchers.IO) {
+    fun getResults(fname: String?, sname: String?) = liveData(Dispatchers.IO) {
             emit(Resource.loading(data = null))
             try {
                 emit(Resource.success(data = apiService.getLoversResult(fname,sname)))

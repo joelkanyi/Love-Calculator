@@ -28,7 +28,8 @@ class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
     private lateinit var binding: ActivityMainBinding
 
-
+    var fname: String? = null
+    var sname: String? = null
 
     // private lateinit var mainViewModelFactory: MainViewModelFactory
     private lateinit var viewModel: MainViewModel
@@ -39,11 +40,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.textView.isSelected = true
 
+        setupViewModel()
 
 
         //viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        binding.viewmodel = viewModel
+
 
         viewModel.progressb.observe(this, Observer {
             if (it) {
@@ -67,7 +69,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
-        viewModel = ViewModelProvider(this, MainViewModelFactory(RetrofitBuilder.apiService)).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
     }
 
     private fun setupUI(){
@@ -75,7 +77,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setupObserver(view : View){
-        viewModel.getRes(fname,sname).observe(this, Observer {
+
+        viewModel.getResults(fname,sname).observe(this, Observer {
+
+            Toast.makeText(this, "Observed", Toast.LENGTH_LONG).show()
         })
     }
 }
