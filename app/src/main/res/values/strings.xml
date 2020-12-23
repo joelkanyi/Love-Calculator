@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Love Calculator</string>
     <string name="your_name">Your Name</string>
-    <string name="your_loves_name">Your Loves Name</string>
+    <string name="your_loves_name">Your Lover\'s Name</string>
     <string name="calculate">Calculate</string>
     <string name="calculate_the_percentage_of_love_between_you_two">Calculate the percentage of love between the two you and also get some free tips</string>
+    <string name="dots">...</string>
 </resources>

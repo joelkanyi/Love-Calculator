@@ -6,8 +6,8 @@
 
     <data>
         <variable
-            name="activity"
-            type="com.kanyideveloper.lovecalculator.ui.MainActivity" />
+            name="viewmodel"
+            type="com.kanyideveloper.lovecalculator.viewmodel.MainViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -26,18 +26,19 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/inputs_backgroud"
+                android:background="@drawable/inputs_background"
                 android:ems="10"
                 android:fontFamily="sans-serif-black"
                 android:hint="@string/your_name"
                 android:inputType="textPersonName"
-                android:text="@={activity.fname}"
+                android:text="@={viewmodel.fname}"
                 android:textColor="@color/second_color"
                 android:textColorHint="#feeaca"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                android:importantForAutofill="no" />
 
             <EditText
                 android:id="@+id/lname"
@@ -49,15 +50,16 @@
                 android:ems="10"
                 android:textColor="@color/second_color"
                 android:fontFamily="sans-serif-black"
-                android:background="@drawable/inputs_backgroud"
+                android:background="@drawable/inputs_background"
                 android:textColorHint="#feeaca"
-                android:text="@={activity.sname}"
+                android:text="@={viewmodel.sname}"
                 android:inputType="textPersonName"
                 android:hint="@string/your_loves_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fname" />
+                app:layout_constraintTop_toBottomOf="@+id/fname"
+                android:importantForAutofill="no" />
 
             <Button
                 android:id="@+id/calculate"
@@ -68,7 +70,7 @@
                 android:textAllCaps="false"
                 android:fontFamily="sans-serif-black"
                 android:text="@string/calculate"
-                android:onClick="@{activity::setupObserver}"
+                android:onClick="@{viewmodel::getResults}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lname" />
@@ -93,9 +95,10 @@
                 android:id="@+id/percentage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="..."
+                android:text="@string/dots"
                 android:textColor="@color/second_color"
-                android:textSize="50dp"
+                android:textSize="50sp"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/circleProgress"
                 app:layout_constraintEnd_toEndOf="@+id/circleProgress"
                 app:layout_constraintStart_toStartOf="@+id/circleProgress"
@@ -108,30 +111,31 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="sans-serif-black"
                 tools:text="All the best!!"
+                android:visibility="invisible"
                 android:textColor="@color/second_color"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/circleProgress" />
 
-            <ProgressBar
+            <com.github.ybq.android.spinkit.SpinKitView
                 android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
                 android:visibility="invisible"
+                style="@style/SpinKitView.Large.Wave"
+                app:SpinKit_Color="@color/second_color"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toBottomOf="@+id/calculate" />
 
             <com.mikhaellopez.circularprogressbar.CircularProgressBar
                 android:id="@+id/circleProgress"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="16dp"
+                android:visibility="invisible"
                 app:cpb_progressbar_color ="@color/second_color"
                 app:cpb_background_progressbar_width ="10dp"
                 app:layout_constraintEnd_toEndOf="parent"

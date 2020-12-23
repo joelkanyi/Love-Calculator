@@ -1,33 +1,26 @@
 package com.kanyideveloper.lovecalculator.ui
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
-import android.widget.Toast
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.kanyideveloper.lovecalculator.R
 import com.kanyideveloper.lovecalculator.databinding.ActivityMainBinding
 import com.kanyideveloper.lovecalculator.viewmodel.MainViewModel
 import timber.log.Timber
 
-
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var timer: CountDownTimer
-    private val TAG = "MainActivity"
     private lateinit var binding: ActivityMainBinding
-
-    var fname: String? = null
-    var sname: String? = null
-
-    // private lateinit var mainViewModelFactory: MainViewModelFactory
     private lateinit var viewModel: MainViewModel
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,49 +28,41 @@ class MainActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
+        //To make marquee moving
         binding.textView.isSelected = true
 
-        setupViewModel()
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        binding.viewmodel = viewModel
 
-
-        //viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-
-
-
-        viewModel.progressb.observe(this, Observer {
+        viewModel.progressb.observe(this, {
             if (it) {
+                binding.calculate.hideKeyboard()
                 binding.progressBar.visibility = VISIBLE
+                binding.circleProgress.visibility = INVISIBLE
+                binding.percentage.visibility = INVISIBLE
+                binding.loveMessage.visibility = INVISIBLE
             } else {
                 binding.progressBar.visibility = INVISIBLE
+                binding.circleProgress.visibility = VISIBLE
+                binding.percentage.visibility = VISIBLE
+                binding.loveMessage.visibility = VISIBLE
             }
         })
 
-        viewModel.results.observe(this, Observer {
-           binding.loveMessage.text = it.result
-
+        viewModel.results.observe(this, {
+            binding.loveMessage.text = it.result
             binding.circleProgress.apply {
                 progressMax = 100f
                 setProgressWithAnimation(it.percentage.toFloat(), 1000)
                 progressBarWidth = 15f
+                binding.percentage.text = "${it.percentage}%"
             }
-
-            binding.percentage.text = "${it.percentage}%"
         })
     }
 
-    private fun setupViewModel() {
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-    }
-
-    private fun setupUI(){
-
-    }
-
-    fun setupObserver(view : View){
-
-        viewModel.getResults(fname,sname).observe(this, Observer {
-
-            Toast.makeText(this, "Observed", Toast.LENGTH_LONG).show()
-        })
+    private fun View.hideKeyboard() {
+        val inputMethodManager =
+            context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
     }
 }

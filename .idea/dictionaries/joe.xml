@@ -2,8 +2,12 @@
   <dictionary name="joe">
     <words>
       <w>fname</w>
+      <w>kanyideveloper</w>
       <w>lname</w>
+      <w>lovecalculator</w>
+      <w>progressb</w>
       <w>sname</w>
+      <w>viewmodel</w>
     </words>
   </dictionary>
 </component>
