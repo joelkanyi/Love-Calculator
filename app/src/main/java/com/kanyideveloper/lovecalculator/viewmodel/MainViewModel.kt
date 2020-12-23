@@ -1,15 +1,13 @@
-package com.kanyideveloper.lovecalculator
+package com.kanyideveloper.lovecalculator.viewmodel
 
-import android.util.Log
-import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.CoroutineScope
+import com.kanyideveloper.lovecalculator.Utils.Resource
+import com.kanyideveloper.lovecalculator.data.network.ApiService
+import com.kanyideveloper.lovecalculator.data.model.LoveResults
+import com.kanyideveloper.lovecalculator.repository.MainRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 class MainViewModel(private val apiService: ApiService) : ViewModel(){
@@ -31,9 +29,9 @@ class MainViewModel(private val apiService: ApiService) : ViewModel(){
     fun getResults(fname: String?, sname: String?) = liveData(Dispatchers.IO) {
             emit(Resource.loading(data = null))
             try {
-                emit(Resource.success(data = apiService.getLoversResult(fname,sname)))
+                emit(Resource.success(data = apiService.getLoversResult(fname, sname)))
             }catch (exception: Exception){
-                emit(Resource.error(data=null,message = exception.message?:"Error occurred"))
+                emit(Resource.error(data = null, message = exception.message ?: "Error occurred"))
             }
         }
 }

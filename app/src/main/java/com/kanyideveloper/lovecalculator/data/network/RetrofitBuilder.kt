@@ -1,4 +1,4 @@
-package com.kanyideveloper.lovecalculator
+package com.kanyideveloper.lovecalculator.data.network
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

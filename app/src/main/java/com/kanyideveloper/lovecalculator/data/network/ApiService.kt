@@ -1,7 +1,6 @@
-package com.kanyideveloper.lovecalculator
+package com.kanyideveloper.lovecalculator.data.network
 
-import retrofit2.Call
-import retrofit2.Response
+import com.kanyideveloper.lovecalculator.data.model.LoveResults
 import retrofit2.http.*
 
 interface ApiService {

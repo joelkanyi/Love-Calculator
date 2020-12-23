@@ -1,6 +1,6 @@
-package com.kanyideveloper.lovecalculator
+package com.kanyideveloper.lovecalculator.Utils
 
-data class Resource<out T>(val status: Status,val data: T?,val message: String?) {
+data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
 
     companion object {
         fun <T> success(data: T): Resource<T> =

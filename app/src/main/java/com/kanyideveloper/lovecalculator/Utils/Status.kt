@@ -1,4 +1,4 @@
-package com.kanyideveloper.lovecalculator
+package com.kanyideveloper.lovecalculator.Utils
 
 enum class Status {
     SUCCESS,

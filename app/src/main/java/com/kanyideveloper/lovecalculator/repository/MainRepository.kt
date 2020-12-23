@@ -1,14 +1,8 @@
-package com.kanyideveloper.lovecalculator
+package com.kanyideveloper.lovecalculator.repository
 
-import android.util.Log
-import android.view.View
-import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.kanyideveloper.lovecalculator.data.model.LoveResults
+import com.kanyideveloper.lovecalculator.data.network.RetrofitBuilder
 
 class MainRepository{
 
