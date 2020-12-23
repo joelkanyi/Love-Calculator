@@ -13,10 +13,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.kanyideveloper.lovecalculator.R
 import com.kanyideveloper.lovecalculator.databinding.ActivityMainBinding
 import com.kanyideveloper.lovecalculator.viewmodel.MainViewModel
+import timber.log.Timber
 
 
 class MainActivity : AppCompatActivity() {
-
 
     private lateinit var timer: CountDownTimer
     private val TAG = "MainActivity"
@@ -30,6 +30,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Timber.d("onCreate")
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         binding.textView.isSelected = true
