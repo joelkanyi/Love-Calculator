@@ -9,8 +9,7 @@ class MainRepository {
 
     var results = MutableLiveData<LoveResults>()
 
-
-    suspend fun getRes(fname: String, sname: String) {
+    suspend fun getResults(fname: String, sname: String) {
         results.value = RetrofitBuilder.apiService.getLoversResult(fname, sname)
         Timber.d(results.value.toString())
     }

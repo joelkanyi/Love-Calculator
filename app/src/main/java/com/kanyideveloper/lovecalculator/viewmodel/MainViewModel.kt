@@ -1,7 +1,6 @@
 package com.kanyideveloper.lovecalculator.viewmodel
 
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,29 +16,36 @@ class MainViewModel : ViewModel() {
     var fname: String? = null
     var sname: String? = null
     private val repository = MainRepository()
-    private val CONNECTION_TIMEOUT = 20000L
+    private val timeout = 20000L
 
     val results: LiveData<LoveResults>
     val progressb = MutableLiveData<Boolean>()
     val connectionMessage = MutableLiveData<String>()
-
+    val emptyStrings = MutableLiveData<Boolean>()
 
     init {
         this.results = repository.results
+        emptyStrings.value = false
     }
 
     fun getResults(view: View) {
+
         progressb.value = true
+
         if (fname.isNullOrEmpty() && sname.isNullOrEmpty()) {
             Timber.d("Empty Strings")
-        } else {
+            progressb.value = false
+            emptyStrings.value = true
+        }
+        else {
             viewModelScope.launch {
                 Timber.d("Making the network call")
-               val job = withTimeoutOrNull(CONNECTION_TIMEOUT){
-                    repository.getRes(fname.toString(), sname.toString())
-                   progressb.value = false
+
+                val job = withTimeoutOrNull(timeout) {
+                    repository.getResults(fname.toString(), sname.toString())
+                    progressb.value = false
                 }
-                if (job == null){
+                if (job == null) {
                     Timber.d("Connection Timeout")
                     progressb.value = false
                     connectionMessage.value = "Connection Timeout, Please Try Again"

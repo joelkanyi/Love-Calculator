@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.kanyideveloper.lovecalculator
 
 import android.app.Application

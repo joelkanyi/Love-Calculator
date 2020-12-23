@@ -7,7 +7,7 @@ object RetrofitBuilder {
 
     private const val BASE_URL = "https://love-calculator.p.rapidapi.com/"
 
-    private fun getRetrofit(): Retrofit{
+    private fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
