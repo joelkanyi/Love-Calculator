@@ -35,12 +35,12 @@ In order to get the app running yourself, you need to:
 
 Libraries used in the whole application are:
 
-- [Jetpack](https://developer.android.com/jetpack)🚀
-- [Viewmodel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Manage UI related data in a lifecycle conscious way 
-  and act as a channel between use cases and ui
-- [Kotlin](https://developer.android.com/training/data-storage/room) - Provides abstraction layer over SQLite
-- [LiveData](https://material.io/develop/android/docs/getting-started/) - build awesome beautiful UIs.🔥🔥
-- [Kotlin Coroutines](https://github.com/wasabeef/recyclerview-animators) - Swipe to delete animator
+- [Kotlin](https://developer.android.com/kotlin) - Kotlin is a programming language that can run on JVM. Google has announced Kotlin as one of its officially supported programming languages in Android Studio; and the Android community is migrating at a pace from Java to Kotlin
+- [Viewmodel](https://developer.android.com/topic/libraries/architecture/viewmodel) -The ViewModel class is designed to store and manage UI-related data in a lifecycle conscious way
+- [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) -  A lifecycle-aware data holder with the observer pattern
+- [Kotlin Coroutines](https://developer.android.com/kotlin/coroutines) - A concurrency design pattern that you can use on Android to simplify code that executes asynchronously
+- [Retofit](https://square.github.io/retrofit) -  Retrofit is a REST Client for Java and Android by Square inc under Apache 2.0 license. Its a simple network library that used for network transactions. By using this library we can seamlessly capture JSON response from web service/web API.
+- [Timber](https://github.com/JakeWharton/timber) - Timber is a logging utility class built on top of Android’s Log class. While in development, we usually end up writing lot of log statements and before the release, we’ll cleanup the log statements by removing them manually (even though logs can be disabled in release build). This tedious process can be avoided easily by using Timber.
 
 ## Pattern
 <img src="screenshots/mvvm2.png"/>
