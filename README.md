@@ -45,13 +45,8 @@ Libraries used in the whole application are:
 ## Demo
 
 <p float="left">
-<img src="screenshots/Screenshot_20200809-151201.jpg" width=250/>
-<img src="screenshots/Screenshot_20200809-151215.jpg" width=250/>
-  <img src="screenshots/Screenshot_20200809-151429.jpg" width=250/>
-  <img src="screenshots/Screenshot_20200809-151445.jpg" width=250/>
-  <img src="screenshots/Screenshot_20200809-151457.jpg" width=250/>
-  <img src="screenshots/Screenshot_20200809-151504.jpg" width=250/>
-  <img src="screenshots/Screenshot_20200809-151510.jpg" width=250/>
+<img src="screenshots/Screenshot_20201225-114110.png" width=250/>
+<img src="screenshotsScreenshot_20201225-114141.png" width=250/>
   </p>
 
 ## Contributors
