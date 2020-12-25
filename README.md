@@ -3,7 +3,7 @@
 
 # Love Calculator
 
-A simple app that consumes Rapid API's - Love Calculator API  to give love percentage between two lovers plus a free advise. Built with clean architecture principles.
+A simple app that consumes Rapid API's - <a href="https://rapidapi.com/ajith/api/love-calculator/">Love Calculator API</a>  to give love percentage between two lovers plus a free advise. Built with clean architecture principles.
 
 Min Api Level : 21 
 
