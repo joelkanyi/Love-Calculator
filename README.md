@@ -1,5 +1,5 @@
 <p align="center">
-<img src="screenshots/mvvmnotelogo.png" alt="home" width="100"/>
+<img src="screenshots/like.png" alt="home" width="100"/>
 
 # Love Calculator
 
