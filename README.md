@@ -46,7 +46,7 @@ Libraries used in the whole application are:
 
 <p float="left">
 <img src="screenshots/Screenshot_20201225-114110.png" width=250/>
-<img src="screenshotsScreenshot_20201225-114141.png" width=250/>
+<img src="screenshots/Screenshot_20201225-114141.png" width=250/>
   </p>
 
 ## Contributors
