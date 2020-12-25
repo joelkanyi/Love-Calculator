@@ -42,9 +42,6 @@ Libraries used in the whole application are:
 - [Retofit](https://square.github.io/retrofit) -  Retrofit is a REST Client for Java and Android by Square inc under Apache 2.0 license. Its a simple network library that used for network transactions. By using this library we can seamlessly capture JSON response from web service/web API.
 - [Timber](https://github.com/JakeWharton/timber) - Timber is a logging utility class built on top of Android’s Log class. While in development, we usually end up writing lot of log statements and before the release, we’ll cleanup the log statements by removing them manually (even though logs can be disabled in release build). This tedious process can be avoided easily by using Timber.
 
-## Pattern
-<img src="screenshots/mvvm2.png"/>
-
 ## Demo
 
 <p float="left">
@@ -59,7 +56,7 @@ Libraries used in the whole application are:
 
 ## Contributors
 
-- Thanks to [Coding in Flow](https://codinginflow.com/) for amazing tutorial on the MVVM and android architectural components
+- Thanks to [Stevdza-San](https://www.youtube.com/channel/UCYLAirIEMMXtWOECuZAtjqQ) for amazing tutorial on the MVVM and android architectural components
 
 ## Support
 
@@ -77,13 +74,13 @@ Please feel free to contact me if you have any questions, ideas or even if you j
 
 ## References
 
-- https://material.io/develop/android/components/navigation-view/
-- https://codinginflow.com/
+- https://developer.android.com/jetpack/
+- https://www.youtube.com/channel/UCYLAirIEMMXtWOECuZAtjqQ
 
 ## License
 
  ```
-   Copyright 2019 Joel Kanyi
+   Copyright 2020 Joel Kanyi
    
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
